@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <boost/algorithm/string/trim.hpp>
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -7,6 +8,7 @@
 #include <regex>
 #include <iterator>
 #include <limits>
+#include <boost/algorithm/string.hpp>
 
 void getKptsAndBands(int* kpts, int* bands, std::string str);
 void rearangeData(std::vector<std::string> &vec, std::ifstream &file, std::ofstream &output, int nKpts, int nBands);
@@ -148,6 +150,7 @@ void rearangeData(std::vector<std::string> &vec, std::ifstream &file, std::ofstr
         // READ in all data into vector of vectors
     file.seekg(std::ios::beg);
     while (getline(file, line)){
+        boost::algorithm::trim(line);
         vec.push_back(line);
     }
 
